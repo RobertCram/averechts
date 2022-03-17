@@ -16,6 +16,6 @@ blocks:
             - cache restore
             - bundle install
             - cache store
-            - 'bundle exec rake db:setup'
+            - 'bundle exec rake db:create'
             - 'bundle exec rails db:migrate'
             - bundle exec rspec
