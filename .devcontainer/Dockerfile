@@ -48,9 +48,6 @@ USER root
 
 RUN gem install bundler:2.3.8
 
-# Ensure gems are cached and only get updated when they change. This will
-# drastically increase build times when your gems do not change.
-
 ARG BRANCH=develop
 
 # Invalidates the cache when branch changes
@@ -59,4 +56,6 @@ ADD https://api.github.com/repos/RobertCram/averechts/git/refs/heads/$BRANCH ver
 # Clones latest version of the branch
 RUN mkdir /workspaces && cd /workspaces && git clone --branch $BRANCH https://github.com/RobertCram/averechts.git averechts
 
+# Ensure gems are cached and only get updated when they change. This will
+# drastically increase build times when your gems do not change.
 RUN cd /workspaces/averechts && bundle install
